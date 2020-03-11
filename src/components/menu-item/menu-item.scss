@@ -35,6 +35,7 @@
     height: 100%;
     background-position: center;
     background-size: cover;
+    transition: transform 350ms ease-in-out;
   }
 
   .content {
@@ -54,6 +55,7 @@
       margin-bottom: 6px;
       font-size: 22px;
       color: #4a4a4a;
+      transition: opacity 200ms ease-in-out;
     }
 
     .subtitle {

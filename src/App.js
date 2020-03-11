@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { signIn, signOut } from './redux/actions';
 
 import './app.scss';
-import HomePage from './pages/homepage/HomePage';
+import HomePage from './pages/homepage/Homepage';
 import Shop from './pages/shop/Shop';
-import Header from './components/header/header';
-import SignInSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
+import Header from './components/header/Header';
+import SignInSignUpPage from './pages/sign-in-and-sign-up/Sign-in-and-sign-up';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 class App extends Component {
