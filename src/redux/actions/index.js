@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT, TOGGLE_CART_DROPDOWN } from './types';
+import { SIGN_IN, SIGN_OUT, TOGGLE_CART_DROPDOWN, ADD_TO_CART } from './types';
 
 export const signIn = user => {
   return {
@@ -16,5 +16,12 @@ export const signOut = () => {
 export const toggleCartDropdown = () => {
   return {
     type: TOGGLE_CART_DROPDOWN
+  };
+};
+
+export const addToCart = item => {
+  return {
+    type: ADD_TO_CART,
+    payload: item
   };
 };
