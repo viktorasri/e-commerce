@@ -1,4 +1,11 @@
-import { SIGN_IN, SIGN_OUT, TOGGLE_CART_DROPDOWN, ADD_TO_CART } from './types';
+import {
+  SIGN_IN,
+  SIGN_OUT,
+  TOGGLE_CART_DROPDOWN,
+  ADD_ITEM_TO_CART,
+  REMOVE_ITEM_FROM_CART,
+  DELETE_FROM_CART
+} from './types';
 
 export const signIn = user => {
   return {
@@ -21,7 +28,21 @@ export const toggleCartDropdown = () => {
 
 export const addToCart = item => {
   return {
-    type: ADD_TO_CART,
+    type: ADD_ITEM_TO_CART,
+    payload: item
+  };
+};
+
+export const removeFromCart = item => {
+  return {
+    type: REMOVE_ITEM_FROM_CART,
+    payload: item
+  };
+};
+
+export const deleteFromCart = item => {
+  return {
+    type: DELETE_FROM_CART,
     payload: item
   };
 };
