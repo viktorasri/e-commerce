@@ -5,10 +5,14 @@ import { createStructuredSelector } from 'reselect';
 
 import './app.scss';
 import { signIn, signOut } from './redux/actions';
+
 import HomePage from './pages/homepage/Homepage';
 import SignInSignUpPage from './pages/sign-in-and-sign-up/Sign-in-and-sign-up';
 import Shop from './pages/shop/Shop';
+import CheckoutPage from './pages/checkout-page/Checkout-page';
+
 import Header from './components/header/Header';
+
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { isSignedInSelector } from './redux/selectors/auth.selector';
 
@@ -48,6 +52,7 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop" component={Shop} />
           <Route exact path="/signin" render={this.SignInSignUpPageRender} />
+          <Route exact path="/checkout" component={CheckoutPage} />
         </Switch>
       </div>
     );

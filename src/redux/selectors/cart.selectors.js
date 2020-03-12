@@ -9,3 +9,7 @@ export const isHiddenSelector = createSelector([cartSelector], cart => cart.isHi
 export const quantitySelector = createSelector([cartItemsSelector], cartItems =>
   cartItems.reduce((acc, item) => acc + item.quantity, 0)
 );
+
+export const totalSelector = createSelector([cartItemsSelector], cartItems =>
+  cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
+);
