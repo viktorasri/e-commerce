@@ -1,5 +1,5 @@
 import { TOGGLE_CART_DROPDOWN, ADD_TO_CART } from '../actions/types';
-import { addItemToCart } from './cartReducer.utils';
+import { addItemToCart } from '../utils/cart.utils';
 
 const INITIAL_STATE = {
   isHidden: true,
