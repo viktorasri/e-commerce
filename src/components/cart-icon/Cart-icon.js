@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import './cart-icon.scss';
 import { ReactComponent as Icon } from '../../assets/cart.svg';
@@ -19,10 +20,8 @@ const mapDispatchToProps = {
   toggleCartDropdown
 };
 
-const mapStateToProps = state => {
-  return {
-    quantity: quantitySelector(state)
-  };
-};
+const mapStateToProps = createStructuredSelector({
+  quantity: quantitySelector
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

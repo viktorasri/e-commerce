@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signIn, signOut } from './redux/actions';
+import { createStructuredSelector } from 'reselect';
 
 import './app.scss';
+import { signIn, signOut } from './redux/actions';
 import HomePage from './pages/homepage/Homepage';
+import SignInSignUpPage from './pages/sign-in-and-sign-up/Sign-in-and-sign-up';
 import Shop from './pages/shop/Shop';
 import Header from './components/header/Header';
-import SignInSignUpPage from './pages/sign-in-and-sign-up/Sign-in-and-sign-up';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { isSignedInSelector } from './redux/selectors/auth.selector';
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -57,10 +59,8 @@ const mapDispatchToProps = {
   signOut
 };
 
-const mapStateToProps = state => {
-  return {
-    isSignedIn: state.auth.isSignedIn
-  };
-};
+const mapStateToProps = createStructuredSelector({
+  isSignedIn: isSignedInSelector
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
