@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import './app.scss';
 import { signIn, signOut } from './redux/actions';
 
-import HomePage from './pages/homepage/Homepage';
+import HomePage from './pages/homepage/HomePage';
 import SignInSignUpPage from './pages/sign-in-and-sign-up/Sign-in-and-sign-up';
 import Shop from './pages/shop/Shop';
 import CheckoutPage from './pages/checkout-page/Checkout-page';
