@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import './directory.scss';
+import { DirectoryContainer } from './directory.styles';
 import { sectionsSelector } from '../../redux/selectors/directory.selectors';
 
 import MenuItem from '../menu-item/Menu-item';
 
 export const Directory = ({ sections }) => {
   return (
-    <div className="directory-menu">
+    <DirectoryContainer>
       {sections.map(section => (
         <MenuItem key={section.id} {...section} />
       ))}
-    </div>
+    </DirectoryContainer>
   );
 };
 

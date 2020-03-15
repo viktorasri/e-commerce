@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import './header.scss';
+import { HeaderContainer, LogoContainer, OptionLink, Options } from './header.styles';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 import CartIcon from '../cart-icon/Cart-icon';
@@ -12,40 +11,29 @@ import { isSignedInSelector } from '../../redux/selectors/auth.selector';
 import { isHiddenSelector } from '../../redux/selectors/cart.selectors';
 
 const Header = ({ isSignedIn, isHidden }) => {
+  const renderSignInSignOutButton = isSignedIn => {
+    return isSignedIn ? (
+      <OptionLink as="div" onClick={() => auth.signOut()}>
+        SIGN OUT
+      </OptionLink>
+    ) : (
+      <OptionLink to="/signin">SIGN IN</OptionLink>
+    );
+  };
+
   return (
-    <div className="header">
-      <Link to="/" className="logo-container">
+    <HeaderContainer>
+      <LogoContainer to="/">
         <Logo className="logo" />
-      </Link>
-      <div className="options">
-        <Link to="/shop" className="option">
-          SHOP
-        </Link>
-        <Link to="/contact" className="option">
-          CONTACT
-        </Link>
+      </LogoContainer>
+      <Options>
+        <OptionLink to="/shop">SHOP</OptionLink>
+        <OptionLink to="/contact">CONTACT</OptionLink>
         {renderSignInSignOutButton(isSignedIn)}
         <CartIcon />
-      </div>
+      </Options>
       {isHidden ? null : <CartDropdown />}
-    </div>
-  );
-};
-
-const renderSignInSignOutButton = isSignedIn => {
-  return isSignedIn ? (
-    <div
-      onClick={() => {
-        auth.signOut();
-      }}
-      className="option"
-    >
-      SIGN OUT
-    </div>
-  ) : (
-    <Link to="/signin" className="option">
-      SIGN IN
-    </Link>
+    </HeaderContainer>
   );
 };
 
