@@ -4,7 +4,8 @@ import {
   TOGGLE_CART_DROPDOWN,
   ADD_ITEM_TO_CART,
   REMOVE_ITEM_FROM_CART,
-  DELETE_FROM_CART
+  DELETE_FROM_CART,
+  GET_COLLECTIONS
 } from './types';
 
 export const signIn = user => {
@@ -44,5 +45,12 @@ export const deleteFromCart = item => {
   return {
     type: DELETE_FROM_CART,
     payload: item
+  };
+};
+
+export const getCollections = collectionMap => {
+  return {
+    type: GET_COLLECTIONS,
+    payload: collectionMap
   };
 };
