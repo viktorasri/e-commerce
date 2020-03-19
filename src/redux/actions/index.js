@@ -1,3 +1,5 @@
+import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
+
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -5,7 +7,9 @@ import {
   ADD_ITEM_TO_CART,
   REMOVE_ITEM_FROM_CART,
   DELETE_FROM_CART,
-  GET_COLLECTIONS
+  FETCH_COLLECTIONS_START,
+  FETCH_COLLECTIONS_SUCCESS,
+  FETCH_COLLECTIONS_ERROR
 } from './types';
 
 export const signIn = user => {
@@ -48,9 +52,34 @@ export const deleteFromCart = item => {
   };
 };
 
-export const getCollections = collectionMap => {
+export const fetchCollectionsStart = () => {
   return {
-    type: GET_COLLECTIONS,
-    payload: collectionMap
+    type: FETCH_COLLECTIONS_START
   };
+};
+
+export const fetchCollectionsSuccess = collectionsMap => {
+  return {
+    type: FETCH_COLLECTIONS_SUCCESS,
+    payload: collectionsMap
+  };
+};
+
+export const fetchCollectionsError = errorMessage => {
+  return {
+    type: FETCH_COLLECTIONS_ERROR,
+    payload: errorMessage
+  };
+};
+
+export const fetchCollectionsStartAsync = () => dispatch => {
+  const collectionRef = firestore.collection('collections');
+  dispatch(fetchCollectionsStart());
+  collectionRef
+    .get()
+    .then(snapshot => {
+      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+      dispatch(dispatch(fetchCollectionsSuccess(collectionsMap)));
+    })
+    .catch(error => dispatch(fetchCollectionsError(error.message)));
 };
