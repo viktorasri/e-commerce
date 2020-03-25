@@ -9,7 +9,7 @@ import {
   RemoveButtonContainer,
   ArrowContainer
 } from './checkout-item.styles';
-import { deleteFromCart, addToCart, removeFromCart } from '../../redux/actions';
+import { addToCart, removeFromCart, deleteCartItems } from '../../redux/actions';
 
 const CheckoutItem = ({ item, removeFromCart, addToCart }) => {
   const { imageUrl, name, quantity, price } = item;
@@ -25,13 +25,19 @@ const CheckoutItem = ({ item, removeFromCart, addToCart }) => {
         <ArrowContainer onClick={() => addToCart(item)}>&#10095;</ArrowContainer>
       </QuantityContainer>
       <TextContainer>{`$${price}`}</TextContainer>
-      <RemoveButtonContainer onClick={() => removeFromCart(item)}>&#10005;</RemoveButtonContainer>
+      <RemoveButtonContainer
+        onClick={() => {
+          deleteCartItems(item);
+        }}
+      >
+        &#10005;
+      </RemoveButtonContainer>
     </CheckoutItemContainer>
   );
 };
 
 const mapDispatchToProps = {
-  deleteFromCart,
+  deleteCartItems,
   addToCart,
   removeFromCart
 };

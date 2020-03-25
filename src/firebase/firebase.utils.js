@@ -19,8 +19,8 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 //  setup google authentification with prompt window for account selection
-const provider = new firebase.auth.GoogleAuthProvider();
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 // setup firestore users profile
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -48,6 +48,16 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
+//  Normalize collections data
 export const convertCollectionsSnapshotToMap = snapshot => {
   const transformSnapshot = snapshot.docs.map(doc => {
     const { title, items } = doc.data();
