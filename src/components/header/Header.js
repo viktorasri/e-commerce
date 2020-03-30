@@ -6,7 +6,6 @@ import { HeaderContainer, LogoContainer, OptionLink, Options } from './header.st
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import CartIcon from '../cart-icon/Cart-icon';
 import CartDropdown from '../cart-dropdown/Cart-dropdown';
-import { auth } from '../../firebase/firebase.utils';
 import { isSignedInSelector } from '../../redux/selectors/auth.selector';
 import { isHiddenSelector } from '../../redux/selectors/cart.selectors';
 import { signOutStart } from '../../redux/actions';

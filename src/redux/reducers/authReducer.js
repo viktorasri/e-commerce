@@ -36,10 +36,6 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         error: action.payload
       };
-    case types.SIGN_UP_START:
-      return {
-        ...state
-      };
     default:
       return state;
   }
