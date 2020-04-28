@@ -2,22 +2,29 @@ import styled from 'styled-components';
 import CustomButton from '../custom-button/Custom-button';
 
 export const CollectionItemContainer = styled.div`
-  width: 22vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   height: 350px;
   align-items: center;
   position: relative;
 
-  &:hover {
-    .image {
-      opacity: 0.8;
-    }
+  @media screen and (min-width: 801px) {
+    &:hover {
+      .image {
+        opacity: 0.8;
+      }
 
-    button {
-      opacity: 0.85;
-      display: flex;
+      button {
+        opacity: 0.85;
+        display: flex;
+      }
     }
+  }
+
+  @media screen and (max-width: 800px) {
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
   }
 `;
 
@@ -45,6 +52,9 @@ export const CollectionFooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 18px;
+  @media screen and (max-width: 800px) {
+    height: auto;
+  }
 `;
 
 export const NameContainer = styled.span`

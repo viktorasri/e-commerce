@@ -33,6 +33,10 @@ export const MenuItemLink = styled(Link)`
   &:last-child {
     margin-left: 7.5px;
   }
+
+  @media screen and (max-width: 800px) {
+    height: 200px;
+  }
 `;
 
 export const BackgroundImageContainer = styled.div`
@@ -56,6 +60,8 @@ export const ContentContainer = styled.div`
   opacity: 0.7;
   position: absolute;
   transition: opacity 200ms ease-in-out;
+  @media screen and (max-width: 800px) {
+  }
 `;
 
 export const ContentTitle = styled.span`
