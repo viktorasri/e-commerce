@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
+const enforce = require('express-sslify');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -19,6 +20,7 @@ app.use(cors());
 if (process.env.NODE_ENV === 'production') {
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));
+    app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
     app.get('*', function (req, res) {
       res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
@@ -30,6 +32,10 @@ app.listen(port, (error) => {
   if (error) throw error;
 
   console.log('Server running on port ' + port);
+});
+
+app.get('/service-worker.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'client/build', 'service-worker.js'));
 });
 
 app.post('/payment', (req, res) => {
